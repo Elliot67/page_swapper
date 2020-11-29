@@ -9,4 +9,4 @@ The main use is to swap between multiple environments and stay on the same webpa
 
 ## Exemples
 
-You can easily swap between `localhost/my-page/4`, `https://www.mywebsite.com/my-page/4` and `https://staging.mywebsite.com.my-page/4`.
+You can easily swap between `localhost/my-page/4`, `https://www.mywebsite.com/my-page/4` and `https://staging.mywebsite.com/my-page/4`.

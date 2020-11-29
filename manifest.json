@@ -1,18 +1,16 @@
 {
-  "manifest_version": 2,
-  "name": "Page Swapper",
-  "version": "0.1",
-  "description": "Swap between domain name and keep the same path and parameters",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "browser_action": {
-    "default_popup": "popup.html",
-    "default_title": "Page Swapper"
-  },
-  "permissions": [
-    "storage"
-  ]
+	"manifest_version": 2,
+	"name": "Page Swapper",
+	"version": "0.1",
+	"description": "Swap between domain name and keep the same path and parameters",
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_title": "Page Swapper"
+	},
+	"permissions": ["storage", "tabs"]
 }

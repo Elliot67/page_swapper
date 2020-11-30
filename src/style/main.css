@@ -1,7 +1,16 @@
 :root {
 	--primary-color: #77f7fe;
 	--secondary-color: #513dad;
-	--font-color: #dedfe6;
+	--font-normal: #dedfe6;
+	--font-light: #9fa1ad;
+	--font-hover: white;
+	--bg-dark: #0d0f1b;
+	--bg-medium: #121525;
+	--bg-light: #242a48;
+	--bg-hover: #181c30;
+	--font-sizeTitle: 1.5rem;
+	--font-sizeNormal: 0.875rem;
+	--font-sizeSmall: 0.75rem;
 }
 
 * {
@@ -20,15 +29,17 @@ body {
 	padding: 0;
 	padding: 1rem;
 	font-size: 100%;
-	color: var(--font-color);
-	background-color: #0d0f1b;
+	color: var(--font-normal);
+	background-color: var(--bg-dark);
 	font-family: "Segoe UI", Tahoma, sans-serif;
+	position: relative;
+	overflow: hidden;
 }
 
 .title {
 	text-align: center;
-	padding-bottom: 1rem;
-	font-size: 2rem;
+	margin-bottom: 1rem;
+	font-size: var(--font-sizeTitle);
 }
 
 .headElement {
@@ -37,27 +48,29 @@ body {
 
 .placeholder {
 	text-align: center;
-	color: #9fa1ad;
+	color: var(--font-light);
 }
 
 .group {
 	position: relative;
 	padding-top: 0.5rem;
-	background-color: #121525;
+	background-color: var(--bg-medium);
 	border-radius: 0.25rem;
 	padding: 0.5rem 0.5rem;
+	width: 100%;
+	margin-bottom: 0.5rem;
 }
 
 .group:before {
-	content: '';
+	content: "";
 	position: absolute;
 	top: 0;
 	bottom: 0;
+	width: 0.25rem;
 	right: 100%;
-	border-left: solid var(--primary-color) 0.25rem;
-	border-radius: 0.25rem;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+	background-color: var(--primary-color);
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
 }
 
 .item {
@@ -73,12 +86,12 @@ body {
 }
 
 .item:hover {
-	background-color: #181c30;
-	color: white;
+	background-color: var(--bg-hover);
+	color: var(--font-hover);
 }
 
 .item.active {
-	background-color: #242a48;
+	background-color: var(--bg-light);
 }
 
 .separator {
@@ -88,7 +101,129 @@ body {
 	margin: 1.5rem 2rem;
 }
 
-
 .hidden {
 	display: none;
+}
+
+.contentElement {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.newItem {
+	background-color: var(--bg-medium);
+	width: 100%;
+}
+
+.newItem::before {
+	border-color: red; /*TODO: A changer*/
+}
+
+label {
+	margin-bottom: 0.75rem;
+	display: block;
+}
+
+label span {
+	font-size: var(--font-sizeSmall);
+	padding-left: 0.75rem;
+	margin-bottom: 0.25rem;
+	display: inline-block;
+}
+
+input {
+	background-color: var(--bg-hover);
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem 0.75rem;
+	outline: none;
+	color: var(--font-normal);
+	width: 100%;
+	font-size: var(--font-sizeNormal);
+}
+
+input:focus,
+input:active {
+	background-color: var(--bg-light);
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: var(--bg-dark);
+	padding: 1rem;
+	padding-top: 1.25rem; /* For the color bar height */
+	z-index: 3;
+}
+
+.modal-colorBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 0.25rem;
+}
+
+.modal-colorBar.color1 {
+	background-color: red;
+}
+
+.modal-colorBar.color2 {
+	background-color: yellow;
+}
+
+.modal-colorBar.color3 {
+	background-color: orange;
+}
+
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 1rem;
+}
+
+.modal-title {
+	text-align: center;
+}
+
+.svg-button {
+	border-radius: 50%;
+	padding: 0.25rem;
+	background-color: var(--bg-medium);
+	cursor: pointer;
+}
+.svg-button:hover {
+	background-color: var(--bg-hover);
+}
+
+.svg-button svg {
+	height: 1.5rem;
+	width: 1.5rem;
+	fill: var(--font-normal);
+	display: block;
+}
+
+.svg-button:hover svg {
+	fill: var(--font-hover);
+}
+
+.createGroup {
+	margin-bottom: 1rem;
+}
+
+.editGroup {
+	cursor: pointer;
+}
+
+.newGroup-item {
+	background-color: var(--bg-medium);
+	border-radius: 0.25rem;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem;
 }

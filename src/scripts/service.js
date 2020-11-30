@@ -1,8 +1,8 @@
-function redirectTo(newUrl) {
+export function redirectTo(newUrl) {
 	chrome.tabs.update({ url: newUrl });
 }
 
-function getTabInfo() {
+export function getTabInfo() {
 	return new Promise((resolve, reject) => {
 		chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 			resolve(tabs[0]);
@@ -10,7 +10,7 @@ function getTabInfo() {
 	});
 }
 
-function getSettings() {
+export function getSettings() {
 	return new Promise((resolve, reject) => {
 		chrome.storage.local.get(['settings'], function (settings) {
 			resolve(settings);
@@ -18,7 +18,7 @@ function getSettings() {
 	});
 }
 
-function setSettings(newSettings) {
+export function setSettings(newSettings) {
 	return new Promise((resolve, reject) => {
 		chrome.storage.local.set({ settings: newSettings }, () => resolve());
 	})

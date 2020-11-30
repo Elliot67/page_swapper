@@ -1,0 +1,16 @@
+{
+  "name": "page_swapper",
+  "version": "0.0.1",
+  "repository": "https://github.com/Elliot67/page_swapper.git",
+  "author": "Elliot Lintz>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "rollup": "^2.34.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

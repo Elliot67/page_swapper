@@ -7,7 +7,6 @@
 		<title>Page Swapper</title>
 		<link rel="stylesheet" href="src/style/main.css" />
 	</head>
-
 	<body>
 		<h1 class="title">Page Swapper</h1>
 		<div class="headElement">
@@ -31,9 +30,9 @@
 				</svg>
 			</div>
 
-			<div class="group editGroup modaleTrans">
+			<template id="listGroup" class="group editGroup modaleTrans">
 				<div class="item">elliotlintz</div>
-			</div>
+			</template>
 		</div>
 
 		<div class="modal">
@@ -57,7 +56,7 @@
 			</div>
 
 			<form class="newGroup-form">
-				<div class="newGroup-item">
+				<div class="newGroup-item newGroup-name">
 					<label>
 						<span>Group name</span>
 						<input name="groupName" class="input" type="text" />
@@ -74,9 +73,19 @@
 						<input name="itemDomain" type="text" />
 					</label>
 				</div>
+
+				<div class="newGroup-add">
+					<div class="svg-button createGroup">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+						>
+							<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+						</svg>
+					</div>
+				</div>
 			</form>
 		</div>
-		<script src="src/script/service.js"></script>
-		<script src="src/script/popup.js"></script>
+		<script src="dist/popup.js"></script>
 	</body>
 </html>

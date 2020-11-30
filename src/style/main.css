@@ -227,3 +227,13 @@ input:active {
 	margin-bottom: 0.5rem;
 	padding: 0.5rem;
 }
+
+.newGroup-name {
+	margin-bottom: 1rem;
+}
+
+.newGroup-add {
+	display: flex;
+	justify-content: center;
+	margin-top: 1.5rem;
+}

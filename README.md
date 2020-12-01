@@ -1,12 +1,9 @@
 # Page Swapper
 
-Page swapper is a chrome extnesion to swap between domain name and keep the same path and parameters
+Page swapper is a chrome extension to easily swap between domains while keeping the same path and url parameters.
 
-## What is it for
-The goal is to easily swap between multiple domain while keeping the same page.
-
-The main use is to swap between multiple environments and stay on the same webpage.
-
-## Exemples
-
-You can easily swap between `localhost/my-page/4`, `https://www.mywebsite.com/my-page/4` and `https://staging.mywebsite.com/my-page/4`.
+The main use case is to swap between multiple environments while keeping the same page. It's super handy for comparing pages while developing.
+For example, you can easily swap between:
+- `localhost/my-page/4`,
+- `www.mywebsite.com/my-page/4`
+- `staging.mywebsite.com/my-page/4`.

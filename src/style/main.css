@@ -169,18 +169,6 @@ input:active {
 	height: 0.25rem;
 }
 
-.modal-colorBar.color1 {
-	background-color: red;
-}
-
-.modal-colorBar.color2 {
-	background-color: yellow;
-}
-
-.modal-colorBar.color3 {
-	background-color: orange;
-}
-
 .modal-header {
 	display: flex;
 	justify-content: space-between;

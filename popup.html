@@ -10,7 +10,7 @@
 	<body>
 		<h1 class="title">Page Swapper</h1>
 		<div class="headElement">
-			<div class="placeholder">
+			<div class="placeholder hidden">
 				Visit one of your sites to start swapping between pages
 			</div>
 
@@ -24,25 +24,16 @@
 		<div class="separator"></div>
 
 		<div class="contentElement">
-			<div class="svg-button createGroup">
+			<div class="svg-button createGroup JS-new-group">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
 				</svg>
 			</div>
 
-			<div class="JS-group-list-container">
-				<template
-				id="listGroup"
-				class="group editGroup modaleTrans"
-				data-groupId=""
-			>
-			</div>
-
-				<div class="item">Nom du site</div>
-			</template>
+			<div class="contentElementContainer JS-group-list-container"></div>
 		</div>
 
-		<div class="modal JS-modal">
+		<div class="modal hidden JS-modal">
 			<div class="modal-colorBar JS-modal-bar"></div>
 			<div class="modal-header">
 				<div class="svg-button JS-modal-cancel">
@@ -66,25 +57,18 @@
 				<div class="newGroup-item newGroup-name">
 					<label>
 						<span>Group name</span>
-						<input name="groupName" class="input" type="text" />
+						<input
+							name="groupName"
+							class="input JS-modal-name-input"
+							type="text"
+						/>
 					</label>
 				</div>
 
-				<div class="JS-modal-input-container">
-					<template id="inputGroup" class="newGroup-item">
-						<label>
-							<span>Name</span>
-							<input name="itemName" type="text" />
-						</label>
-						<label>
-							<span>Domain</span>
-							<input name="itemDomain" type="text" />
-						</label>
-					</template>
-				</div>
+				<div class="JS-modal-input-container"></div>
 
 				<div class="newGroup-add">
-					<div class="svg-button createGroup">
+					<div class="svg-button createGroup JS-new-item">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
@@ -95,6 +79,26 @@
 				</div>
 			</form>
 		</div>
+
+		<!-- TEMPLATES -->
+		<template id="inputGroup">
+			<div class="newGroup-item">
+				<label>
+					<span>Name</span>
+					<input name="itemName" type="text" />
+				</label>
+				<label>
+					<span>Domain</span>
+					<input name="itemDomain" type="text" />
+				</label>
+			</div>
+		</template>
+		<template id="listGroup">
+			<div class="group editGroup" data-groupId="">
+				<div class="item">Nom du site</div>
+			</div>
+		</template>
+
 		<script src="dist/popup.js"></script>
 	</body>
 </html>

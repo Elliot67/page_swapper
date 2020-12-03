@@ -6,6 +6,7 @@ export default {
 	output: {
 		dir: 'dist',
 		format: 'iife',
+		sourcemap: 'inline',
 	},
 	plugins: [
 		resolve(),

@@ -1,6 +1,5 @@
 :root {
 	--primary-color: #77f7fe;
-	--secondary-color: #513dad;
 	--font-normal: #dedfe6;
 	--font-light: #9fa1ad;
 	--font-hover: white;
@@ -19,10 +18,23 @@
 	box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+	width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--primary-color);
+}
+
+*::-webkit-scrollbar-track {
+	background-color: var(--bg-medium);
+}
+
 html {
 	font-size: 100%;
 	height: 30rem;
 	width: 18rem;
+	overflow: scroll;
 }
 
 body {
@@ -33,7 +45,8 @@ body {
 	background-color: var(--bg-dark);
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	position: relative;
-	overflow: hidden;
+	overflow-y: scroll;
+	height: 100%;
 }
 
 .title {
@@ -97,7 +110,7 @@ body {
 .separator {
 	position: relative;
 	height: 2px;
-	background-color: var(--secondary-color);
+	background-color: var(--primary-color);
 	margin: 1.5rem 2rem;
 }
 
@@ -109,6 +122,10 @@ body {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+}
+
+.contentElementContainer {
+	width: 100%;
 }
 
 .newItem {

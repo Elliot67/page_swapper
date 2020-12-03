@@ -6,6 +6,12 @@ export class Group {
 		this.name = "";
 		this.color = groupColors[Math.floor(Math.random() * groupColors.length)];
 		this.items = [];
+
+		this.createItem();
+	}
+
+	createItem() {
+		this.items.push(new Item());
 	}
 }
 

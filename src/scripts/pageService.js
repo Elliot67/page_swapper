@@ -5,8 +5,9 @@ export function updateModal(Group) {
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
 	elementsContainer.innerHTML = "";
-	for (let item in Group.items) {
-		elementsContainer.appendChild(hydrateInputGroup(getInputGroup(), item));
+	for (let item of Group.items) {
+		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
+		elementsContainer.appendChild(hydratedInput);
 	}
 }
 
@@ -20,8 +21,8 @@ export function updateListGroup(groupList = []) {
 }
 
 // Utils functions
-function cloneNode(node) {
-	return document.importNode(node.content, true);
+function cloneNode(templateElement) {
+	return document.importNode(templateElement.content, true);
 }
 
 function getListGroup() {
@@ -40,8 +41,7 @@ function getInputGroup() {
 }
 
 function hydrateInputGroup(inputGroupNode, Input) {
-	console.log(inputGroupNode)
-	inputGroupNode.children[0].children[1].value = Input.name;
-	inputGroupNode.children[1].children[1].value = Input.domain;
+	inputGroupNode.querySelectorAll("input")[0].value = Input.name;
+	inputGroupNode.querySelectorAll("input")[1].value = Input.domain;
 	return inputGroupNode;
 }

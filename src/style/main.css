@@ -10,6 +10,10 @@
 	--font-sizeTitle: 1.5rem;
 	--font-sizeNormal: 0.875rem;
 	--font-sizeSmall: 0.75rem;
+
+	--clr-1: yellow;
+	--clr-2: orange;
+	--clr-3: purple;
 }
 
 * {
@@ -74,7 +78,7 @@ body {
 	margin-bottom: 0.5rem;
 }
 
-.group:before {
+.group::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -84,6 +88,16 @@ body {
 	background-color: var(--primary-color);
 	border-top-left-radius: 0.25rem;
 	border-bottom-left-radius: 0.25rem;
+}
+
+.group.clr1::before {
+	background-color: var(--clr-1);
+}
+.group.clr2::before {
+	background-color: var(--clr-2);
+}
+.group.clr3::before {
+	background-color: var(--clr-3);
 }
 
 .item {
@@ -184,6 +198,16 @@ input:active {
 	right: 0;
 	width: 100%;
 	height: 0.25rem;
+}
+
+.modal-colorBar.clr1 {
+	background-color: var(--clr-1);
+}
+.modal-colorBar.clr2 {
+	background-color: var(--clr-2);
+}
+.modal-colorBar.clr3 {
+	background-color: var(--clr-3);
 }
 
 .modal-header {

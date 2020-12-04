@@ -7,27 +7,31 @@ let activeGroup;
 const modal = document.querySelector(".JS-modal");
 
 function initEvents() {
+	document.querySelector(".JS-modal-cancel").addEventListener("click", closeModal, { passive: true });
+	document.querySelector(".JS-new-group").addEventListener("click", newGroup, { passive: true });
+	document.querySelector(".JS-new-item").addEventListener("click", addItem, { passive: true });
+	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
+	// TODO: When pressing enter swap between input and validateModal if there is no input left
+}
 
-	document.querySelector(".JS-modal-cancel").addEventListener("click", () => {
-		closeModal();
-	}, { passive: true });
+function newGroup() {
+	openModal();
+	activeGroup = new Group();
+	pageService.updateModal(activeGroup);
+}
 
-	document.querySelector(".JS-modal-validate").addEventListener("click", () => {
-		groups.push(activeGroup);
-		service.setSettings(groups);
-		closeModal();
-	}, { passive: true });
+function addItem() {
+	activeGroup.hydrateWithForm();
+	activeGroup.createItem();
+	pageService.updateModal(activeGroup);
+}
 
-	document.querySelector(".JS-new-group").addEventListener("click", () => {
-		openModal();
-		activeGroup = new Group();
-		pageService.updateModal(activeGroup);
-	}, { passive: true });
-
-	document.querySelector(".JS-new-item").addEventListener("click", () => {
-		activeGroup.createItem();
-		pageService.updateModal(activeGroup);
-	}, { passive: true });
+function validateModal() {
+	activeGroup.hydrateWithForm();
+	groups.push(activeGroup);
+	service.setSettings(groups);
+	pageService.updateListGroup(groups);
+	closeModal();
 }
 
 function openModal() {

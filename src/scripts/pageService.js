@@ -1,6 +1,6 @@
 export function updateModal(Group) {
 	// TODO: Manage destroying and creating events
-	document.querySelector(".JS-modal-bar").style.backgroundColor = Group.color;
+	document.querySelector(".JS-modal-bar").classList.add(Group.color);
 	document.querySelector(".JS-modal-name-input").value = Group.name;
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
@@ -15,9 +15,10 @@ export function updateListGroup(groupList = []) {
 	// TODO: Manage destroying and creating events
 	const elementsContainer = document.querySelector(".JS-group-list-container");
 	elementsContainer.innerHTML = "";
-	for (let group in groupList) {
-		elementsContainer.appendChild(hydrateListGroup(getListGroup(), group));
-	}
+	groupList.forEach((group) => {
+		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
+		elementsContainer.appendChild(hydratedListGroup);
+	});
 }
 
 // Utils functions
@@ -30,9 +31,10 @@ function getListGroup() {
 }
 
 function hydrateListGroup(listGroupNode, Group) {
-	console.log(listGroupNode);
-	listGroupNode.children[0].innerText = Group.name;
-	listGroupNode.dataset = Group.id;
+	listGroupNode.querySelector(".group").classList.add(Group.color);
+	const nameContainer = listGroupNode.querySelector(".JS-group-list-item");
+	nameContainer.innerText = Group.name;
+	nameContainer.dataset.id = Group.id;
 	return listGroupNode;
 }
 
@@ -41,7 +43,8 @@ function getInputGroup() {
 }
 
 function hydrateInputGroup(inputGroupNode, Input) {
-	inputGroupNode.querySelectorAll("input")[0].value = Input.name;
-	inputGroupNode.querySelectorAll("input")[1].value = Input.domain;
+	const inputs = inputGroupNode.querySelectorAll("input");
+	inputs[0].value = Input.name;
+	inputs[1].value = Input.domain;
 	return inputGroupNode;
 }

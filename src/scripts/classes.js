@@ -41,6 +41,13 @@ export class Group {
 			this.createItem();
 		}
 	}
+
+	hydrateWithObject(groupObject){
+		this.color = groupObject.color;
+		this.id = groupObject.id;
+		this.name = groupObject.name;
+		this.items = groupObject.items;
+	}
 }
 
 export class Item {

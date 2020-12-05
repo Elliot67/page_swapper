@@ -26,14 +26,14 @@ function addItem() {
 	pageService.updateModal(activeGroup, false);
 }
 
-function validateModal() {
+async function validateModal() {
 	activeGroup.hydrateWithForm(true);
 	if (activeGroup.id === null) {
 		activeGroup.generateId();
 		groups.push(activeGroup);
 	}
-	service.setSettings(groups);
-	pageService.updateListGroup(groups);
+	await service.setGroupsToSettings(groups);
+	pageService.updateListGroup(groups, false);
 	closeModal();
 }
 
@@ -105,11 +105,17 @@ function sleep(seconds) {
 
 
 async function init() {
-	//const settings = await service.getSettings();
-	//const tab = await service.getTabInfo();
-	//console.log({ settings });
-	//console.log({ tab });
-	// TODO: Hydrate with datas
+	const groupsObjects = await service.getGroupsFromSettings();
+	groupsObjects.forEach((groupObject) => {
+		const newGroup = new Group();
+		newGroup.hydrateWithObject(groupObject);
+		groups.push(newGroup);
+	})
+	pageService.updateListGroup(groups);
+
+	//const currentTab = await service.getTabInfo();
+	//console.log({ currentTab });
+	// TODO: Update First Section
 	// TODO: Select active tab
 }
 

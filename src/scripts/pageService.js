@@ -10,21 +10,26 @@ export function updateModal(Group, withAnimation = true) {
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
 	elementsContainer.innerHTML = "";
 	let dataAnimation = 4;
-	for (const item of Group.items) {
+	Group.items.forEach((item) => {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
 			hydratedInput.querySelector("*").dataset.anim = dataAnimation;
-			dataAnimation = dataAnimation < 9 && dataAnimation !== 0 ? dataAnimation + 1 : null;
+			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
 		}
 		elementsContainer.appendChild(hydratedInput);
-	}
+	});
 }
 
-export function updateListGroup(groupList = []) { // TODO: Add animation when opening the extension 
+export function updateListGroup(groupList = [], withAnimation = true) {
 	const elementsContainer = document.querySelector(".JS-group-list-container");
 	elementsContainer.innerHTML = "";
+	let dataAnimation = 4;
 	groupList.forEach((group) => {
 		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
+		if (dataAnimation !== null && withAnimation) {
+			hydratedListGroup.querySelector("*").dataset.anim = dataAnimation;
+			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
+		}
 		elementsContainer.appendChild(hydratedListGroup);
 	});
 }

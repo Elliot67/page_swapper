@@ -10,16 +10,23 @@ export function getTabInfo() {
 	});
 }
 
-export function getSettings() {
+export function getGroupsFromSettings() {
 	return new Promise((resolve, reject) => {
-		chrome.storage.local.get(['settings'], function (settings) {
-			resolve(settings);
+		chrome.storage.local.get('groups-v1', (settings) => {
+			const groups = settings && settings['groups-v1']?.length > 0 ? settings['groups-v1'] : [];
+			resolve(groups);
 		});
 	});
 }
 
-export function setSettings(newSettings) {
+export async function setGroupsToSettings(newGroups) {
 	return new Promise((resolve, reject) => {
-		chrome.storage.local.set({ settings: newSettings }, () => resolve());
-	})
+		chrome.storage.local.set({ 'groups-v1': newGroups }, () => resolve());
+	});
+}
+
+export function clearSettings() {
+	return new Promise((resolve, reject) => {
+		chrome.storage.local.clear(() => resolve());
+	});
 }

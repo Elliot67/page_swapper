@@ -26,7 +26,7 @@
 		<div class="contentElementContainer JS-group-list-container"></div>
 
 		<div class="contentElement">
-			<span class="svg-button JS-new-group">
+			<span class="svg-button JS-new-group" title="New swap" data-anim="6">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
 				</svg>
@@ -38,15 +38,15 @@
 		<div class="modal hidden JS-modal">
 			<div class="modal-colorBar JS-modal-bar"></div>
 			<div class="modal-header">
-				<div class="svg-button JS-modal-cancel" data-anim="5">
+				<div class="svg-button JS-modal-cancel" data-anim="6" title="Cancel the swap">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
 						/>
 					</svg>
 				</div>
-				<h2 class="modal-title" data-anim="1">New Item</h2>
-				<div class="svg-button JS-modal-validate" data-anim="5">
+				<h2 class="modal-title" data-anim="1">New Swap</h2>
+				<div class="svg-button JS-modal-validate" data-anim="6" title="Save the swap">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
@@ -58,7 +58,7 @@
 			<form class="newGroup-form JS-modal-form">
 				<div class="newGroup-item newGroup-name" data-anim="2">
 					<label>
-						<span>Group name</span>
+						<span>Swap name</span>
 						<input
 							name="groupName"
 							class="input JS-modal-name-input"
@@ -69,8 +69,8 @@
 
 				<div class="JS-modal-input-container"></div>
 
-				<div class="newGroup-add" data-anim="6">
-					<div class="svg-button createGroup JS-new-item">
+				<div class="newGroup-add" data-anim="5">
+					<div class="svg-button createGroup JS-new-item" title="Add a page">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
@@ -86,21 +86,18 @@
 		<template id="inputGroup">
 			<div class="newGroup-item JS-modal-group-item">
 				<label>
-					<span>Name</span>
+					<span>Page name</span>
 					<input name="itemName" type="text" />
 				</label>
 				<label>
-					<span>Domain</span>
+					<span>Domain name</span>
 					<input name="itemDomain" type="text" />
 				</label>
 			</div>
 		</template>
 		<template id="listGroup">
-			<div
-				class="group editGroup JS-group-list-container-item"
-				data-groupId=""
-			>
-				<div class="item JS-group-list-item">Nom du site</div>
+			<div class="group editGroup JS-group-list-container-item" data-groupId=""title="Edit the swap">
+				<div class="item JS-group-list-item">Swap name</div>
 			</div>
 		</template>
 

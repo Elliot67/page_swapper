@@ -140,15 +140,7 @@ body {
 
 .contentElementContainer {
 	width: 100%;
-}
-
-.newItem {
-	background-color: var(--bg-medium);
-	width: 100%;
-}
-
-.newItem::before {
-	border-color: red; /*TODO: A changer*/
+	margin-bottom: 1rem;
 }
 
 label {
@@ -240,10 +232,6 @@ input:active {
 
 .svg-button:hover svg {
 	fill: var(--font-hover);
-}
-
-.createGroup {
-	margin-bottom: 1rem;
 }
 
 .editGroup {

@@ -11,7 +11,7 @@ function initEvents() {
 	document.querySelector(".JS-new-group").addEventListener("click", newGroup, { passive: true });
 	document.querySelector(".JS-new-item").addEventListener("click", addItem, { passive: true });
 	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
-	// TODO: When pressing enter swap between input and validateModal if there is no input left
+	document.querySelector(".JS-group-list-container").addEventListener("click", editGroup, { passive: true });
 }
 
 function newGroup() {
@@ -28,7 +28,10 @@ function addItem() {
 
 function validateModal() {
 	activeGroup.hydrateWithForm();
-	groups.push(activeGroup);
+	if (activeGroup.id === null) {
+		activeGroup.generateId();
+		groups.push(activeGroup);
+	}
 	service.setSettings(groups);
 	pageService.updateListGroup(groups);
 	closeModal();
@@ -39,6 +42,7 @@ function openModal() {
 	document.querySelector("html").style.overflowY = "hidden";
 	document.querySelector("body").style.overflowY = "hidden";
 	modal.style.overflowY = "scroll";
+	document.querySelector(".JS-modal-name-input").focus();
 }
 
 function closeModal() {
@@ -47,6 +51,23 @@ function closeModal() {
 	modal.style.overflowY = "hidden";
 	modal.classList.toggle("hidden");
 	activeGroup = null;
+}
+
+function editGroup(event) {
+	const clickedItem = event.path[0];
+	let groupElement;
+
+	if (clickedItem.classList.contains("JS-group-list-item")) { // 1st layer
+		groupElement = clickedItem;
+	} else if (clickedItem.classList.contains("JS-group-list-container-item")) { // middle layer
+		groupElement = clickedItem.querySelector(".JS-group-list-item");
+	} else {
+		return;
+	}
+
+	openModal();
+	activeGroup = groups.find((group) => group.id === groupElement.dataset.id);
+	pageService.updateModal(activeGroup);
 }
 
 async function init() {

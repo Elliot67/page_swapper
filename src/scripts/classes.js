@@ -2,12 +2,16 @@ const groupColors = ["clr1", "clr2", "clr3"]; // TODO: A changer
 
 export class Group {
 	constructor() {
-		this.id = generateUniqueId();
+		this.id = null;
 		this.name = "";
 		this.color = groupColors[Math.floor(Math.random() * groupColors.length)];
 		this.items = [];
 
 		this.createItem({});
+	}
+
+	generateId() {
+		this.id = generateUniqueId();
 	}
 
 	createItem(params = {}) {
@@ -25,13 +29,14 @@ export class Group {
 		const allItems = form.querySelectorAll(".JS-modal-group-item");
 
 		this.clearItems();
-		allItems.forEach((item) => {
+		for (const item of allItems) {
 			const inputs = item.querySelectorAll("input");
+			if (inputs[0].value === "" && inputs[1].value === "") continue;
 			this.createItem({
 				name: inputs[0].value,
 				domain: inputs[1].value,
 			});
-		});
+		}
 	}
 }
 

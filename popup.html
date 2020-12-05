@@ -23,14 +23,14 @@
 
 		<div class="separator"></div>
 
+		<div class="contentElementContainer JS-group-list-container"></div>
+
 		<div class="contentElement">
-			<div class="svg-button createGroup JS-new-group">
+			<span class="svg-button JS-new-group">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
 				</svg>
-			</div>
-
-			<div class="contentElementContainer JS-group-list-container"></div>
+			</span>
 		</div>
 
 		<div class="modal hidden JS-modal">
@@ -94,7 +94,10 @@
 			</div>
 		</template>
 		<template id="listGroup">
-			<div class="group editGroup" data-groupId="">
+			<div
+				class="group editGroup JS-group-list-container-item"
+				data-groupId=""
+			>
 				<div class="item JS-group-list-item">Nom du site</div>
 			</div>
 		</template>

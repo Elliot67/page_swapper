@@ -14,6 +14,7 @@
 	--clr-1: yellow;
 	--clr-2: orange;
 	--clr-3: purple;
+	--anim-delay: 0.2s;
 }
 
 * {
@@ -142,8 +143,20 @@ body {
 	}
 }
 
+.transition {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: var(--bg-medium);
+	transition-duration: 0.4s;
+	transition-timing-function: ease-out;
+	transform-origin: center center;
+	z-index: 5;
+}
+
 .hidden {
 	display: none;
+	visibility: hidden;
 }
 
 .contentElement {
@@ -194,7 +207,7 @@ input:active {
 	background-color: var(--bg-dark);
 	padding: 1rem;
 	padding-top: 1.25rem; /* For the color bar height */
-	z-index: 3;
+	z-index: 10;
 }
 
 .modal-colorBar {
@@ -267,4 +280,50 @@ input:active {
 	display: flex;
 	justify-content: center;
 	margin-top: 1.5rem;
+}
+
+[data-anim] {
+	animation-name: appearing;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	opacity: 0;
+}
+[data-anim="1"] {
+	animation-delay: calc(var(--anim-delay) * 1);
+}
+[data-anim="2"] {
+	animation-delay: calc(var(--anim-delay) * 2);
+}
+[data-anim="3"] {
+	animation-delay: calc(var(--anim-delay) * 3);
+}
+[data-anim="4"] {
+	animation-delay: calc(var(--anim-delay) * 4);
+}
+[data-anim="5"] {
+	animation-delay: calc(var(--anim-delay) * 5);
+}
+[data-anim="6"] {
+	animation-delay: calc(var(--anim-delay) * 6);
+}
+[data-anim="7"] {
+	animation-delay: calc(var(--anim-delay) * 7);
+}
+[data-anim="8"] {
+	animation-delay: calc(var(--anim-delay) * 8);
+}
+[data-anim="9"] {
+	animation-delay: calc(var(--anim-delay) * 9);
+}
+
+@keyframes appearing {
+	0% {
+		transform: translateY(-0.5rem);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }

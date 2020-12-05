@@ -1,6 +1,6 @@
 import { groupColors } from "./classes";
 
-export function updateModal(Group) {
+export function updateModal(Group, withAnimation = true) {
 	console.log("UPDATING MODAL", Group);
 	const topBar = document.querySelector(".JS-modal-bar");
 	topBar.classList.remove(...groupColors);
@@ -9,13 +9,18 @@ export function updateModal(Group) {
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
 	elementsContainer.innerHTML = "";
-	for (let item of Group.items) {
+	let dataAnimation = 4;
+	for (const item of Group.items) {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
+		if (dataAnimation !== null && withAnimation) {
+			hydratedInput.querySelector("*").dataset.anim = dataAnimation;
+			dataAnimation = dataAnimation < 9 && dataAnimation !== 0 ? dataAnimation + 1 : null;
+		}
 		elementsContainer.appendChild(hydratedInput);
 	}
 }
 
-export function updateListGroup(groupList = []) {
+export function updateListGroup(groupList = []) { // TODO: Add animation when opening the extension 
 	const elementsContainer = document.querySelector(".JS-group-list-container");
 	elementsContainer.innerHTML = "";
 	groupList.forEach((group) => {

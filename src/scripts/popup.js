@@ -14,8 +14,8 @@ function initEvents() {
 	document.querySelector(".JS-group-list-container").addEventListener("click", editGroup, { passive: true });
 }
 
-function newGroup() {
-	openModal();
+async function newGroup() {
+	await openModal();
 	activeGroup = new Group();
 	pageService.updateModal(activeGroup);
 }
@@ -23,11 +23,11 @@ function newGroup() {
 function addItem() {
 	activeGroup.hydrateWithForm();
 	activeGroup.createItem();
-	pageService.updateModal(activeGroup);
+	pageService.updateModal(activeGroup, false);
 }
 
 function validateModal() {
-	activeGroup.hydrateWithForm();
+	activeGroup.hydrateWithForm(true);
 	if (activeGroup.id === null) {
 		activeGroup.generateId();
 		groups.push(activeGroup);
@@ -37,12 +37,38 @@ function validateModal() {
 	closeModal();
 }
 
-function openModal() {
+async function openModal(animationOrigin = null) {
+
+	if (animationOrigin !== null) {
+		await animateModalOpen(animationOrigin);
+	}
+
 	modal.classList.remove('hidden');
 	document.querySelector("html").style.overflowY = "hidden";
 	document.querySelector("body").style.overflowY = "hidden";
+	document.querySelector(".JS-transition").classList.add("hidden");
 	modal.style.overflowY = "scroll";
 	document.querySelector(".JS-modal-name-input").focus();
+}
+
+async function animateModalOpen(animationOrigin) {
+	const data = animationOrigin.getBoundingClientRect();
+	const transition = document.querySelector(".JS-transition");
+
+	transition.style.height = `${data.height}px`;
+	transition.style.width = `${data.width}px`;
+	transition.style.left = `${data.left}px`;
+	transition.style.top = `${data.top}px`;
+	transition.style.backgroundColor = `var(--bg-medium)`;
+	transition.classList.remove("hidden");
+	await sleep(0);
+	transition.style.height = "100%";
+	transition.style.width = "100%";
+	transition.style.left = 0;
+	transition.style.top = 0;
+	transition.style.backgroundColor = `var(--bg-dark)`;
+	await sleep(0.4); // animation duration
+	transition.classList.add("hidden");
 }
 
 function closeModal() {
@@ -53,22 +79,30 @@ function closeModal() {
 	activeGroup = null;
 }
 
-function editGroup(event) {
+async function editGroup(event) {
 	const clickedItem = event.path[0];
 	let groupElement;
+	let dataElement;
 
 	if (clickedItem.classList.contains("JS-group-list-item")) { // 1st layer
-		groupElement = clickedItem;
+		groupElement = event.path[1];
+		dataElement = clickedItem;
 	} else if (clickedItem.classList.contains("JS-group-list-container-item")) { // middle layer
-		groupElement = clickedItem.querySelector(".JS-group-list-item");
+		groupElement = clickedItem;
+		dataElement = clickedItem.querySelector(".JS-group-list-item");
 	} else {
 		return;
 	}
 
-	openModal();
-	activeGroup = groups.find((group) => group.id === groupElement.dataset.id);
+	await openModal(groupElement);
+	activeGroup = groups.find((group) => group.id === dataElement.dataset.id);
 	pageService.updateModal(activeGroup);
 }
+
+function sleep(seconds) {
+	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
 
 async function init() {
 	//const settings = await service.getSettings();

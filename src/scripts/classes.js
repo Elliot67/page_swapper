@@ -22,7 +22,7 @@ export class Group {
 		this.items = [];
 	}
 
-	hydrateWithForm() {
+	hydrateWithForm(isLastSave = false) {
 		const form = document.querySelector(".JS-modal-form");
 		this.name = form.querySelector(".JS-modal-name-input").value;
 		const allItems = form.querySelectorAll(".JS-modal-group-item");
@@ -30,11 +30,15 @@ export class Group {
 		this.clearItems();
 		for (const item of allItems) {
 			const inputs = item.querySelectorAll("input");
-			if (inputs[0].value === "" && inputs[1].value === "") continue;
+			if (isLastSave && inputs[0].value === "" && inputs[1].value === "") continue;
 			this.createItem({
 				name: inputs[0].value,
 				domain: inputs[1].value,
 			});
+		}
+
+		if (this.items.length === 0) {
+			this.createItem();
 		}
 	}
 }

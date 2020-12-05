@@ -1,4 +1,4 @@
-const groupColors = ["clr1", "clr2", "clr3"]; // TODO: A changer
+export const groupColors = ["clr1", "clr2", "clr3"]; // TODO: A changer
 
 export class Group {
 	constructor() {
@@ -21,7 +21,6 @@ export class Group {
 	clearItems() {
 		this.items = [];
 	}
-
 
 	hydrateWithForm() {
 		const form = document.querySelector(".JS-modal-form");

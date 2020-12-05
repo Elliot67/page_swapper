@@ -1,6 +1,10 @@
+import { groupColors } from "./classes";
+
 export function updateModal(Group) {
-	// TODO: Manage destroying and creating events
-	document.querySelector(".JS-modal-bar").classList.add(Group.color);
+	console.log("UPDATING MODAL", Group);
+	const topBar = document.querySelector(".JS-modal-bar");
+	topBar.classList.remove(...groupColors);
+	topBar.classList.add(Group.color);
 	document.querySelector(".JS-modal-name-input").value = Group.name;
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
@@ -12,7 +16,6 @@ export function updateModal(Group) {
 }
 
 export function updateListGroup(groupList = []) {
-	// TODO: Manage destroying and creating events
 	const elementsContainer = document.querySelector(".JS-group-list-container");
 	elementsContainer.innerHTML = "";
 	groupList.forEach((group) => {

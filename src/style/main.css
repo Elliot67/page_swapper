@@ -126,6 +126,20 @@ body {
 	height: 2px;
 	background-color: var(--primary-color);
 	margin: 1.5rem 2rem;
+	transform: scaleX(1);
+	animation-name: separatorEnter;
+	animation-duration: 0.6s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+}
+
+@keyframes separatorEnter {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
 }
 
 .hidden {

@@ -11,9 +11,10 @@
 	--font-sizeNormal: 0.875rem;
 	--font-sizeSmall: 0.75rem;
 
-	--clr-1: yellow;
-	--clr-2: orange;
-	--clr-3: purple;
+	--clr-1: #fbcd1e;
+	--clr-2: #ffa026;
+	--clr-3: #d81cd8;
+	--clr-4: #8447f7;
 	--anim-delay: 0.2s;
 }
 
@@ -110,6 +111,9 @@ body {
 .group.clr3::before {
 	background-color: var(--clr-3);
 }
+.group.clr4::before {
+	background-color: var(--clr-4);
+}
 
 .item {
 	margin-bottom: 0.5rem;
@@ -143,7 +147,6 @@ body {
 	animation-duration: 0.6s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-out;
-	animation-delay: calc(var(--anim-delay) * 3);
 	animation-fill-mode: forwards;
 	opacity: 0;
 }
@@ -226,6 +229,13 @@ input:active {
 	z-index: 10;
 }
 
+.modal.edit [data-hide="edit"] {
+	display: none;
+}
+.modal.new [data-hide="new"] {
+	display: none;
+}
+
 .modal-colorBar {
 	position: absolute;
 	top: 0;
@@ -243,6 +253,9 @@ input:active {
 }
 .modal-colorBar.clr3 {
 	background-color: var(--clr-3);
+}
+.modal-colorBar.clr4 {
+	background-color: var(--clr-4);
 }
 
 .modal-header {
@@ -324,38 +337,38 @@ input:active {
 	margin-top: 1.5rem;
 }
 
-[data-anim] {
+[data-anim="true"] {
 	animation-name: appearing;
 	animation-duration: 1s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 	opacity: 0;
 }
-[data-anim="1"] {
+[data-del="1"] {
 	animation-delay: calc(var(--anim-delay) * 1);
 }
-[data-anim="2"] {
+[data-del="2"] {
 	animation-delay: calc(var(--anim-delay) * 2);
 }
-[data-anim="3"] {
+[data-del="3"] {
 	animation-delay: calc(var(--anim-delay) * 3);
 }
-[data-anim="4"] {
+[data-del="4"] {
 	animation-delay: calc(var(--anim-delay) * 4);
 }
-[data-anim="5"] {
+[data-del="5"] {
 	animation-delay: calc(var(--anim-delay) * 5);
 }
-[data-anim="6"] {
+[data-del="6"] {
 	animation-delay: calc(var(--anim-delay) * 6);
 }
-[data-anim="7"] {
+[data-del="7"] {
 	animation-delay: calc(var(--anim-delay) * 7);
 }
-[data-anim="8"] {
+[data-del="8"] {
 	animation-delay: calc(var(--anim-delay) * 8);
 }
-[data-anim="9"] {
+[data-del="9"] {
 	animation-delay: calc(var(--anim-delay) * 9);
 }
 

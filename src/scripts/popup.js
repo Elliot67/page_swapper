@@ -11,11 +11,20 @@ function initEvents() {
 	document.querySelector(".JS-new-group").addEventListener("click", newGroup, { passive: true });
 	document.querySelector(".JS-new-item").addEventListener("click", addItem, { passive: true });
 	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
+	document.querySelector(".JS-modal-delete").addEventListener("click", deleteModal, { passive: true });
 	document.querySelector(".JS-group-list-container").addEventListener("click", editGroup, { passive: true });
 }
 
+async function deleteModal() {
+	const groupIndex = groups.findIndex((group) => group.id === activeGroup.id);
+	groups.splice(groupIndex, 1);
+	await service.setGroupsToSettings(groups);
+	pageService.updateListGroup(groups, false);
+	closeModal();
+}
+
 async function newGroup() {
-	await openModal();
+	await openModal(true);
 	activeGroup = new Group();
 	pageService.updateModal(activeGroup);
 }
@@ -37,7 +46,8 @@ async function validateModal() {
 	closeModal();
 }
 
-async function openModal(animationOrigin = null) {
+async function openModal(isNew = false, animationOrigin = null) {
+	modal.classList.add(isNew ? "new" : "edit");
 
 	if (animationOrigin !== null) {
 		await animateModalOpen(animationOrigin);
@@ -77,6 +87,8 @@ function closeModal() {
 	modal.style.overflowY = "hidden";
 	modal.classList.toggle("hidden");
 	activeGroup = null;
+
+	modal.classList.remove("edit", "new");
 }
 
 async function editGroup(event) {
@@ -94,7 +106,7 @@ async function editGroup(event) {
 		return;
 	}
 
-	await openModal(groupElement);
+	await openModal(false, groupElement);
 	activeGroup = groups.find((group) => group.id === dataElement.dataset.id);
 	pageService.updateModal(activeGroup);
 }
@@ -117,6 +129,8 @@ async function init() {
 	//console.log({ currentTab });
 	// TODO: Update First Section
 	// TODO: Select active tab
+
+	// TODO: Add event listener on the form for the modal item delete button
 }
 
 initEvents();

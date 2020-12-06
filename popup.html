@@ -8,11 +8,11 @@
 		<link rel="stylesheet" href="src/style/main.css" />
 	</head>
 	<body>
-		<div class="title" data-anim="0">
+		<div class="title" data-anim="true" data-del="0">
 			<img class="title-logo" src="./icons/icon48.png" alt="">
 			<h1 class="title-text">Page Swapper</h1>
 		</div>
-		<div class="headElement" data-anim="1">
+		<div class="headElement" data-anim="true" data-del="1">
 			<div class="placeholder hidden">
 				Visit one of your sites to start swapping between pages
 			</div>
@@ -24,45 +24,47 @@
 			</div>
 		</div>
 
-		<div class="separator"></div>
+		<div class="separator" data-del="3"></div>
 
 		<div class="contentElementContainer JS-group-list-container"></div>
 
 		<div class="contentElement">
-			<span class="svg-button JS-new-group" title="Add a new swap" data-anim="6">
+			<span class="svg-button JS-new-group" title="Add a new swap" data-anim="true" data-del="6">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
 				</svg>
 			</span>
 		</div>
 
-		<div class="separator"></div>
+		<div class="separator" data-del="7"></div>
 
-		<div>Export data</div>
-		<div>Import data</div>
-		<div>Author - Github</div>
+		<div class="footer" data-anim="true" data-del="8">
+			<div>Export data</div>
+			<div>Import data</div>
+			<div>Author - Github</div>
+		</div>
 
 		<div class="transition hidden JS-transition"></div>
 
 		<div class="modal hidden JS-modal">
 			<div class="modal-colorBar JS-modal-bar"></div>
 			<div class="modal-header">
-				<div class="svg-button JS-modal-cancel" data-anim="6" title="Cancel the swap">
+				<div class="svg-button JS-modal-cancel" data-anim="true" data-del="6" title="Cancel the swap">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z"
 						/>
 					</svg>
 				</div>
-				<h2 class="modal-title" data-anim="1">New Swap</h2>
-				<div class="svg-button JS-modal-delete" data-anim="6" title="Delete the swap" data-fill="red">
+				<h2 class="modal-title" data-anim="true" data-del="1">New Swap</h2>
+				<div class="svg-button JS-modal-delete" data-anim="true" data-del="6" title="Delete the swap" data-fill="red" data-hide="new">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							d="M20 7v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7H2V5h20v2h-2zM6 7v13h12V7H6zm1-5h10v2H7V2zm4 8h2v7h-2v-7z"
 						/>
 					</svg>
 				</div>
-				<div class="svg-button JS-modal-validate" data-anim="6" title="Save the swap" data-fill="green">
+				<div class="svg-button JS-modal-validate" data-anim="true" data-del="6" title="Save the swap" data-fill="green">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
@@ -72,7 +74,7 @@
 			</div>
 
 			<form class="newGroup-form JS-modal-form">
-				<div class="newGroup-item newGroup-name" data-anim="2">
+				<div class="newGroup-item newGroup-name" data-anim="true" data-del="2">
 					<label>
 						<span>Swap name</span>
 						<input
@@ -85,7 +87,7 @@
 
 				<div class="JS-modal-input-container"></div>
 
-				<div class="newGroup-add" data-anim="5">
+				<div class="newGroup-add" data-anim="true" data-del="5">
 					<div class="svg-button createGroup JS-new-item" title="Add a page">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +102,7 @@
 
 		<!-- TEMPLATES -->
 		<template id="inputGroup">
-			<div class="newGroup-item JS-modal-group-item">
+			<div class="newGroup-item JS-modal-group-item" data-anim="true" >
 				<span class="newGroup-itemDelete svg-button JS-modal-group-item-delete" data-fill="red">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/>
@@ -117,7 +119,7 @@
 			</div>
 		</template>
 		<template id="listGroup">
-			<div class="group editGroup JS-group-list-container-item" data-groupId=""title="Edit the swap">
+			<div class="group editGroup JS-group-list-container-item" data-groupId="" data-anim="true" title="Edit the swap">
 				<div class="item JS-group-list-item">Swap name</div>
 			</div>
 		</template>

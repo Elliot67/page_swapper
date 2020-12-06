@@ -13,7 +13,7 @@ export function updateModal(Group, withAnimation = true) {
 	Group.items.forEach((item) => {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
-			hydratedInput.querySelector("*").dataset.anim = dataAnimation;
+			hydratedInput.querySelector("*").dataset.del = dataAnimation;
 			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
 		}
 		elementsContainer.appendChild(hydratedInput);
@@ -27,7 +27,7 @@ export function updateListGroup(groupList = [], withAnimation = true) {
 	groupList.forEach((group) => {
 		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
 		if (dataAnimation !== null && withAnimation) {
-			hydratedListGroup.querySelector("*").dataset.anim = dataAnimation;
+			hydratedListGroup.querySelector("*").dataset.del = dataAnimation;
 			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
 		}
 		elementsContainer.appendChild(hydratedListGroup);

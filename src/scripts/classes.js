@@ -1,4 +1,4 @@
-export const groupColors = ["clr1", "clr2", "clr3"]; // TODO: A changer
+export const groupColors = ["clr1", "clr2", "clr3", "clr4"];
 
 export class Group {
 	constructor() {

@@ -81,16 +81,15 @@ body {
 }
 
 .group {
-	position: relative;
-	padding-top: 0.5rem;
 	background-color: var(--bg-medium);
 	border-radius: 0.25rem;
-	padding: 0.5rem 0.5rem;
+	padding: 0.5rem;
+	position: relative;
 	width: 100%;
 	margin-bottom: 0.5rem;
 }
 
-.group::before {
+.group.border::before {
 	content: "";
 	position: absolute;
 	top: 0;
@@ -102,16 +101,16 @@ body {
 	border-bottom-left-radius: 0.25rem;
 }
 
-.group.clr1::before {
+.group.border.clr1::before {
 	background-color: var(--clr-1);
 }
-.group.clr2::before {
+.group.border.clr2::before {
 	background-color: var(--clr-2);
 }
-.group.clr3::before {
+.group.border.clr3::before {
 	background-color: var(--clr-3);
 }
-.group.clr4::before {
+.group.border.clr4::before {
 	background-color: var(--clr-4);
 }
 
@@ -122,6 +121,7 @@ body {
 	cursor: pointer;
 	padding: 0.5rem 0.75rem;
 	font-size: var(--font-sizeNormal);
+	width: 100%;
 }
 
 .item:last-child {
@@ -307,14 +307,6 @@ input:active {
 	cursor: pointer;
 }
 
-.newGroup-item {
-	background-color: var(--bg-medium);
-	border-radius: 0.25rem;
-	margin-bottom: 0.5rem;
-	padding: 0.5rem;
-	position: relative;
-}
-
 .newGroup-itemDelete {
 	position: absolute;
 	top: 0;
@@ -381,4 +373,38 @@ input:active {
 		transform: translateY(0);
 		opacity: 1;
 	}
+}
+
+.manageConfig {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	gap: 1rem;
+}
+
+.manageConfig-item {
+	font-size: var(--font-sizeNormal);
+	margin-bottom: 0;
+	text-align: center;
+	width: 100%;
+	border-radius: 0.25rem;
+	background-color: var(--bg-hover);
+	padding: 0.25rem;
+	cursor: pointer;
+	color: var(--font-light);
+}
+.manageConfig-item:hover {
+	color: var(--font-hover);
+}
+
+.manageConfig-itemInput {
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.credits {
+	text-align: center;
+	font-size:var(--font-sizeNormal);
 }

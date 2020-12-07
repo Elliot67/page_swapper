@@ -17,7 +17,7 @@
 				Visit one of your sites to start swapping between pages
 			</div>
 
-			<div class="group">
+			<div class="group border">
 				<div class="item active">Staging</div>
 				<div class="item">Production</div>
 				<div class="item">Local</div>
@@ -38,11 +38,14 @@
 
 		<div class="separator" data-del="7"></div>
 
-		<div class="footer" data-anim="true" data-del="8">
-			<div>Export data</div>
-			<div>Import data</div>
-			<div>Author - Github</div>
+		<div class="manageConfig" data-anim="true" data-del="8">
+			<div class="manageConfig-item JS-export-config" title="Export all swaps into a file">Export swaps</div>
+			<label class="manageConfig-item" title="Import swaps from a file">
+				Import swaps
+				<input class="manageConfig-itemInput JS-import-config" type="file" value="Import config" accept="application/json" multiple>
+			</label>
 		</div>
+		<div class="credits" data-anim="true" data-del="9">Made by Elliot Lintz - Github</div>
 
 		<div class="transition hidden JS-transition"></div>
 
@@ -74,7 +77,7 @@
 			</div>
 
 			<form class="newGroup-form JS-modal-form">
-				<div class="newGroup-item newGroup-name" data-anim="true" data-del="2">
+				<div class="group newGroup-name" data-anim="true" data-del="2">
 					<label>
 						<span>Swap name</span>
 						<input
@@ -102,7 +105,7 @@
 
 		<!-- TEMPLATES -->
 		<template id="inputGroup">
-			<div class="newGroup-item JS-modal-group-item" data-anim="true" >
+			<div class="group JS-modal-group-item">
 				<span class="newGroup-itemDelete svg-button JS-modal-group-item-delete" data-fill="red">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/>
@@ -119,7 +122,7 @@
 			</div>
 		</template>
 		<template id="listGroup">
-			<div class="group editGroup JS-group-list-container-item" data-groupId="" data-anim="true" title="Edit the swap">
+			<div class="group border editGroup JS-group-list-container-item" data-groupId="" title="Edit the swap">
 				<div class="item JS-group-list-item">Swap name</div>
 			</div>
 		</template>

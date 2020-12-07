@@ -1,7 +1,6 @@
 import { groupColors } from "./classes";
 
 export function updateModal(Group, withAnimation = true) {
-	console.log("UPDATING MODAL", Group);
 	const topBar = document.querySelector(".JS-modal-bar");
 	topBar.classList.remove(...groupColors);
 	topBar.classList.add(Group.color);
@@ -13,7 +12,9 @@ export function updateModal(Group, withAnimation = true) {
 	Group.items.forEach((item) => {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
-			hydratedInput.querySelector("*").dataset.del = dataAnimation;
+			const element = hydratedInput.querySelector("*");
+			element.dataset.del = dataAnimation;
+			element.dataset.anim = true;
 			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
 		}
 		elementsContainer.appendChild(hydratedInput);
@@ -27,7 +28,9 @@ export function updateListGroup(groupList = [], withAnimation = true) {
 	groupList.forEach((group) => {
 		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
 		if (dataAnimation !== null && withAnimation) {
-			hydratedListGroup.querySelector("*").dataset.del = dataAnimation;
+			const element = hydratedListGroup.querySelector("*");
+			element.dataset.del = dataAnimation;
+			element.dataset.anim = true;
 			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
 		}
 		elementsContainer.appendChild(hydratedListGroup);

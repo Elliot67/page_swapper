@@ -13,6 +13,36 @@ function initEvents() {
 	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
 	document.querySelector(".JS-modal-delete").addEventListener("click", deleteModal, { passive: true });
 	document.querySelector(".JS-group-list-container").addEventListener("click", editGroup, { passive: true });
+
+	// Import / Export
+	document.querySelector(".JS-export-config").addEventListener("click", exportConfig, { passive: true });
+	document.querySelector(".JS-import-config").addEventListener("change", importConfig, { passive: true });
+}
+
+function exportConfig() {
+	const data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ "groups-v1": groups }));
+	const anchor = document.createElement("a");
+	anchor.setAttribute("href", data);
+	anchor.setAttribute("download", "page-swapper-config.json");
+	anchor.click();
+	anchor.remove();
+}
+
+function importConfig() {
+	const fileInput = document.querySelector(".JS-import-config");
+	if (fileInput.files.length === 1) {
+		const reader = new FileReader();
+		reader.onload = readImportedFile;
+		reader.readAsText(fileInput.files[0]);
+	}
+	fileInput.value = "";
+}
+
+async function readImportedFile(event) {
+	const config = JSON.parse(event.target.result);
+	importGroupsObjects(config["groups-v1"], false);
+	await service.setGroupsToSettings(groups);
+	pageService.updateListGroup(groups, false);
 }
 
 async function deleteModal() {
@@ -115,14 +145,18 @@ function sleep(seconds) {
 	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
-
-async function init() {
-	const groupsObjects = await service.getGroupsFromSettings();
+function importGroupsObjects(groupsObjects) {
 	groupsObjects.forEach((groupObject) => {
 		const newGroup = new Group();
 		newGroup.hydrateWithObject(groupObject);
 		groups.push(newGroup);
-	})
+	});
+}
+
+
+async function init() {
+	const groupsObjects = await service.getGroupsFromSettings();
+	importGroupsObjects(groupsObjects);
 	pageService.updateListGroup(groups);
 
 	//const currentTab = await service.getTabInfo();

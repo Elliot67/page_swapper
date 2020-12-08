@@ -2,7 +2,7 @@ export const groupColors = ["clr1", "clr2", "clr3", "clr4"];
 
 export class Group {
 	constructor() {
-		this.id = null;
+		this.id = null; // Not generating id to be able to differenciate between edit and new group
 		this.name = "";
 		this.color = groupColors[Math.floor(Math.random() * groupColors.length)];
 		this.items = [];
@@ -42,11 +42,18 @@ export class Group {
 		}
 	}
 
-	hydrateWithObject(groupObject){
+	hydrateWithObject(groupObject) {
+		this.generateId();
 		this.color = groupObject.color;
-		this.id = groupObject.id;
 		this.name = groupObject.name;
-		this.items = groupObject.items;
+
+		this.clearItems();
+		groupObject.items.forEach((itemObject) => {
+			this.createItem({
+				name: itemObject.name,
+				domain: itemObject.domain,
+			});
+		});
 	}
 }
 
@@ -54,6 +61,16 @@ export class Item {
 	constructor({ name = "", domain = "" }) {
 		this.name = name;
 		this.domain = domain;
+		this.generateId();
+	}
+
+	generateId() {
+		this.id = generateUniqueId();
+	}
+
+	hydrateItemWithObject(itemObject) {
+		this.name = itemObject.item;
+		this.domain = itemObject.domain;
 	}
 }
 

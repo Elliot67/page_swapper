@@ -1,14 +1,18 @@
 import { groupColors } from "./classes";
 
 export function updateModal(Group, withAnimation = true) {
+	console.log('OPENING MODAL', Group);
 	const topBar = document.querySelector(".JS-modal-bar");
 	topBar.classList.remove(...groupColors);
 	topBar.classList.add(Group.color);
+
 	document.querySelector(".JS-modal-name-input").value = Group.name;
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
-	elementsContainer.innerHTML = "";
+	clearChildrenNodes(elementsContainer);
+	console.log(elementsContainer);
 	let dataAnimation = 4;
+	console.log(Group.items);
 	Group.items.forEach((item) => {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
@@ -23,7 +27,7 @@ export function updateModal(Group, withAnimation = true) {
 
 export function updateListGroup(groupList = [], withAnimation = true) {
 	const elementsContainer = document.querySelector(".JS-group-list-container");
-	elementsContainer.innerHTML = "";
+	clearChildrenNodes(elementsContainer);
 	let dataAnimation = 4;
 	groupList.forEach((group) => {
 		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
@@ -63,4 +67,10 @@ function hydrateInputGroup(inputGroupNode, Input) {
 	inputs[0].value = Input.name;
 	inputs[1].value = Input.domain;
 	return inputGroupNode;
+}
+
+function clearChildrenNodes(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
 }

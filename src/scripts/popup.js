@@ -5,14 +5,21 @@ import { Group } from "./classes";
 let groups = [];
 let activeGroup;
 const modal = document.querySelector(".JS-modal");
+let currentGroupId;
+let currentItemId;
 
 function initEvents() {
-	document.querySelector(".JS-modal-cancel").addEventListener("click", closeModal, { passive: true });
+	// Outside to inside modal
 	document.querySelector(".JS-new-group").addEventListener("click", newGroup, { passive: true });
-	document.querySelector(".JS-new-item").addEventListener("click", addItem, { passive: true });
-	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
-	document.querySelector(".JS-modal-delete").addEventListener("click", deleteModal, { passive: true });
 	document.querySelector(".JS-group-list-container").addEventListener("click", editGroup, { passive: true });
+
+	// Inside modal
+	document.querySelector(".JS-new-item").addEventListener("click", addItem, { passive: true });
+
+	// Inside modal to outside
+	document.querySelector(".JS-modal-validate").addEventListener("click", validateModal, { passive: true });
+	document.querySelector(".JS-modal-cancel").addEventListener("click", closeModal, { passive: true });
+	document.querySelector(".JS-modal-delete").addEventListener("click", deleteModal, { passive: true });
 
 	// Import / Export
 	document.querySelector(".JS-export-config").addEventListener("click", exportConfig, { passive: true });
@@ -101,13 +108,13 @@ async function animateModalOpen(animationOrigin) {
 	transition.style.top = `${data.top}px`;
 	transition.style.backgroundColor = `var(--bg-medium)`;
 	transition.classList.remove("hidden");
-	await sleep(0);
+	await service.sleep(0);
 	transition.style.height = "100%";
 	transition.style.width = "100%";
 	transition.style.left = 0;
 	transition.style.top = 0;
 	transition.style.backgroundColor = `var(--bg-dark)`;
-	await sleep(0.4); // animation duration
+	await service.sleep(0.4); // animation duration
 	transition.classList.add("hidden");
 }
 
@@ -141,29 +148,44 @@ async function editGroup(event) {
 	pageService.updateModal(activeGroup);
 }
 
-function sleep(seconds) {
-	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
-
 function importGroupsObjects(groupsObjects) {
 	groupsObjects.forEach((groupObject) => {
 		const newGroup = new Group();
 		newGroup.hydrateWithObject(groupObject);
 		groups.push(newGroup);
 	});
+	console.log("end importing from storage", groups);
+}
+
+async function findCurrentItem() {
+	const currentTab = await service.getTabInfo();
+	const url = currentTab.url;
+
+	console.log(url);
+
+
+	for (const group of groups) {
+		const isFound = group.items.find((item) => url.match(new RegExp(item.domain)));
+		if (isFound) {
+			currentGroupId = group.id;
+			currentItemId = isFound.id;
+			return;
+		}
+	}
 }
 
 
 async function init() {
 	const groupsObjects = await service.getGroupsFromSettings();
+	console.log("groups objects", groupsObjects);
 	importGroupsObjects(groupsObjects);
 	pageService.updateListGroup(groups);
 
-	//const currentTab = await service.getTabInfo();
-	//console.log({ currentTab });
-	// TODO: Update First Section
-	// TODO: Select active tab
+	await findCurrentItem();
+	console.log(currentGroupId, currentItemId);
 
+
+	// TODO: Update First Section
 	// TODO: Add event listener on the form for the modal item delete button
 }
 

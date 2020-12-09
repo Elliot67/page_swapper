@@ -13,14 +13,11 @@
 			<h1 class="title-text">Page Swapper</h1>
 		</div>
 		<div class="headElement" data-anim="true" data-del="1">
-			<div class="placeholder hidden">
+			<div class="placeholder JS-head-placeholder">
 				Visit one of your sites to start swapping between pages
 			</div>
 
-			<div class="group border">
-				<div class="item active">Staging</div>
-				<div class="item">Production</div>
-				<div class="item">Local</div>
+			<div class="group border hidden JS-head-container">
 			</div>
 		</div>
 
@@ -104,6 +101,10 @@
 		</div>
 
 		<!-- TEMPLATES -->
+		<template id="headItem">
+			<div class="item">Page name</div>
+		</template>
+
 		<template id="inputGroup">
 			<div class="group JS-modal-group-item">
 				<span class="newGroup-itemDelete svg-button JS-modal-group-item-delete" data-fill="red">

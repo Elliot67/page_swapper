@@ -1,7 +1,6 @@
 import { groupColors } from "./classes";
 
 export function updateModal(Group, withAnimation = true) {
-	console.log('OPENING MODAL', Group);
 	const topBar = document.querySelector(".JS-modal-bar");
 	topBar.classList.remove(...groupColors);
 	topBar.classList.add(Group.color);
@@ -10,9 +9,7 @@ export function updateModal(Group, withAnimation = true) {
 
 	const elementsContainer = document.querySelector(".JS-modal-input-container");
 	clearChildrenNodes(elementsContainer);
-	console.log(elementsContainer);
 	let dataAnimation = 4;
-	console.log(Group.items);
 	Group.items.forEach((item) => {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
@@ -41,6 +38,25 @@ export function updateListGroup(groupList = [], withAnimation = true) {
 	});
 }
 
+export function updateHead(currentGroup, currentItem) {
+	const placeholder = document.querySelector(".JS-head-placeholder");
+	const headContainer = document.querySelector(".JS-head-container");
+	clearChildrenNodes(headContainer);
+
+	if (currentGroup === null) {
+		headContainer.classList.add("hidden");
+		placeholder.classList.remove("hidden");
+		return;
+	}
+
+	currentGroup.items.forEach((item) => {
+		const hydratedItem = hydrateHeadItem(getHeadTemplate(), item, currentItem.id === item.id);
+		headContainer.appendChild(hydratedItem);
+	});
+	placeholder.classList.add("hidden");
+	headContainer.classList.remove("hidden");
+}
+
 // Utils functions
 function cloneNode(templateElement) {
 	return document.importNode(templateElement.content, true);
@@ -48,6 +64,18 @@ function cloneNode(templateElement) {
 
 function getListGroup() {
 	return cloneNode(document.querySelector("template#listGroup"));
+}
+
+function getHeadTemplate() {
+	return cloneNode(document.querySelector("template#headItem"));
+}
+
+function hydrateHeadItem(headTemplate, Item, isActive) {
+	const itemElement = headTemplate.querySelector(".item");
+	itemElement.innerText = Item.name;
+	console.log(isActive);
+	if (isActive) itemElement.classList.add("active");
+	return itemElement;
 }
 
 function hydrateListGroup(listGroupNode, Group) {

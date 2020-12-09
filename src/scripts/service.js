@@ -34,3 +34,7 @@ export function clearSettings() {
 export function sleep(seconds) {
 	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
+
+export function generateUniqueId() {
+	return (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+}

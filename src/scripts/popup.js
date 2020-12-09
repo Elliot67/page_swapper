@@ -5,8 +5,8 @@ import { Group } from "./classes";
 let groups = [];
 let activeGroup;
 const modal = document.querySelector(".JS-modal");
-let currentGroupId;
-let currentItemId;
+let currentGroup = null;
+let currentItem = null;
 
 function initEvents() {
 	// Outside to inside modal
@@ -154,21 +154,19 @@ function importGroupsObjects(groupsObjects) {
 		newGroup.hydrateWithObject(groupObject);
 		groups.push(newGroup);
 	});
-	console.log("end importing from storage", groups);
 }
 
-async function findCurrentItem() {
+async function findCurrentItem() { // TODO: Far from perfect
 	const currentTab = await service.getTabInfo();
 	const url = currentTab.url;
 
 	console.log(url);
 
-
 	for (const group of groups) {
 		const isFound = group.items.find((item) => url.match(new RegExp(item.domain)));
 		if (isFound) {
-			currentGroupId = group.id;
-			currentItemId = isFound.id;
+			currentGroup = group;
+			currentItem = isFound;
 			return;
 		}
 	}
@@ -182,11 +180,12 @@ async function init() {
 	pageService.updateListGroup(groups);
 
 	await findCurrentItem();
-	console.log(currentGroupId, currentItemId);
-
+	pageService.updateHead(currentGroup, currentItem);
+	console.log(currentGroup, currentItem);
 
 	// TODO: Update First Section
 	// TODO: Add event listener on the form for the modal item delete button
+	// TODO: Update first section after editing a group
 }
 
 initEvents();

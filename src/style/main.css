@@ -408,3 +408,15 @@ input:active {
 	text-align: center;
 	font-size:var(--font-sizeNormal);
 }
+
+.credits-github svg {
+	fill: var(--font-normal);
+}
+
+
+.inline-icon {
+	position: relative;
+	top: 0.2em;
+	height: 1.3em;
+	width: 1.3em;
+}

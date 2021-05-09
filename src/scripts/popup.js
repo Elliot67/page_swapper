@@ -158,12 +158,14 @@ function importGroupsObjects(groupsObjects) {
 
 async function findCurrentItem() { // TODO: Far from perfect
 	const currentTab = await service.getTabInfo();
-	const url = currentTab.url;
+	const url = new URL(currentTab.url);
 
 	console.log(url);
 
+	// href - origin
+
 	for (const group of groups) {
-		const isFound = group.items.find((item) => url.match(new RegExp(item.domain)));
+		const isFound = group.items.find((item) => url.href.match(new RegExp(item.domain)));
 		if (isFound) {
 			currentGroup = group;
 			currentItem = isFound;

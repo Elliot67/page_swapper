@@ -8,11 +8,11 @@
 		<link rel="stylesheet" href="src/style/main.css" />
 	</head>
 	<body>
-		<div class="title" data-anim="true" data-del="0">
+		<div class="title" data-anim="true" style="--anim-delay-pos: 0;">
 			<img class="title-logo" src="./icons/icon48.png" alt="">
 			<h1 class="title-text">Page Swapper</h1>
 		</div>
-		<div class="headElement" data-anim="true" data-del="1">
+		<div class="headElement" data-anim="true" style="--anim-delay-pos: 1;">
 			<div class="placeholder JS-head-placeholder">
 				Visit one of your sites to start swapping between pages
 			</div>
@@ -21,28 +21,28 @@
 			</div>
 		</div>
 
-		<div class="separator" data-del="3"></div>
+		<div class="separator" style="--anim-delay-pos: 3;"></div>
 
 		<div class="contentElementContainer JS-group-list-container"></div>
 
 		<div class="contentElement">
-			<span class="svg-button JS-new-group" title="Add a new swap" data-anim="true" data-del="6">
+			<span class="svg-button JS-new-group" title="Add a new swap" data-anim="true" style="--anim-delay-pos: 6;">
 				<svg>
 					<use href="#svg-plus"></use>
 				</svg>
 			</span>
 		</div>
 
-		<div class="separator" data-del="7"></div>
+		<div class="separator" style="--anim-delay-pos: 7;"></div>
 
-		<div class="manageConfig" data-anim="true" data-del="8">
+		<div class="manageConfig" data-anim="true" style="--anim-delay-pos: 8;">
 			<div class="manageConfig-item JS-export-config" title="Export all swaps into a file">Export swaps</div>
 			<label class="manageConfig-item" title="Import swaps from a file">
 				Import swaps
 				<input class="manageConfig-itemInput JS-import-config" type="file" value="Import config" accept="application/json" multiple>
 			</label>
 		</div>
-		<div class="credits" data-anim="true" data-del="9">
+		<div class="credits" data-anim="true" style="--anim-delay-pos: 9;">
 			<span class="credits-name">Made with love by Elliot Lintz</span>
 			<div class="credits-github">
 				<span>Available on Github</span>
@@ -53,22 +53,21 @@
 		<div class="transition hidden JS-transition"></div>
 
 		<div class="modal hidden JS-modal">
-			<div class="modal-colorBar JS-modal-bar"></div>
 			<div class="modal-header">
-				<div class="svg-button JS-modal-cancel" data-anim="true" data-del="6" title="Cancel the swap">
+				<div class="svg-button JS-modal-cancel" data-anim="true" style="--anim-delay-pos: 6;" title="Cancel the swap">
 					<svg><use href="#svg-arrow-left"></use></svg>
 				</div>
-				<h2 class="modal-title" data-anim="true" data-del="1">New Swap</h2>
-				<div class="svg-button JS-modal-delete" data-anim="true" data-del="6" title="Delete the swap" data-fill="red" data-hide="new">
+				<h2 class="modal-title" data-anim="true" style="--anim-delay-pos: 1;">New Swap</h2>
+				<div class="svg-button JS-modal-delete" data-anim="true" style="--anim-delay-pos: 6;" title="Delete the swap" data-fill="red" data-hide="new">
 					<svg><use href="#svg-bin"></use></svg>
 				</div>
-				<div class="svg-button JS-modal-validate" data-anim="true" data-del="6" title="Save the swap" data-fill="green">
+				<div class="svg-button JS-modal-validate" data-anim="true" style="--anim-delay-pos: 6;" title="Save the swap" data-fill="green">
 					<svg><use href="#svg-checkmark"></use></svg>
 				</div>
 			</div>
 
 			<form class="newGroup-form JS-modal-form">
-				<div class="group newGroup-name" data-anim="true" data-del="2">
+				<div class="group newGroup-name" data-anim="true" style="--anim-delay-pos: 2;">
 					<label>
 						<span>Swap name</span>
 						<input name="groupName" class="input JS-modal-name-input" type="text"/>
@@ -77,7 +76,7 @@
 
 				<div class="JS-modal-input-container"></div>
 
-				<div class="newGroup-add" data-anim="true" data-del="5">
+				<div class="newGroup-add" data-anim="true" style="--anim-delay-pos: 5;">
 					<div class="svg-button createGroup JS-new-item" title="Add a page">
 						<svg><use href="#svg-plus"></use></svg>
 					</div>

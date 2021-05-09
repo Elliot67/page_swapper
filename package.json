@@ -2,7 +2,7 @@
   "name": "page_swapper",
   "version": "0.0.1",
   "repository": "https://github.com/Elliot67/page_swapper.git",
-  "author": "Elliot Lintz>",
+  "author": "Elliot Lintz",
   "license": "MIT",
   "scripts": {
     "watch": "rollup -c -w",

@@ -1,9 +1,4 @@
-import { groupColors } from "./classes";
-
 export function updateModal(Group, withAnimation = true) {
-	const topBar = document.querySelector(".JS-modal-bar");
-	topBar.classList.remove(...groupColors);
-	topBar.classList.add(Group.color);
 
 	document.querySelector(".JS-modal-name-input").value = Group.name;
 
@@ -14,9 +9,9 @@ export function updateModal(Group, withAnimation = true) {
 		const hydratedInput = hydrateInputGroup(getInputGroup(), item);
 		if (dataAnimation !== null && withAnimation) {
 			const element = hydratedInput.querySelector("*");
-			element.dataset.del = dataAnimation;
+			element.style = `anim-delay-pos: ${dataAnimation};`;
 			element.dataset.anim = true;
-			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
+			dataAnimation++;
 		}
 		elementsContainer.appendChild(hydratedInput);
 	});
@@ -30,9 +25,9 @@ export function updateListGroup(groupList = [], withAnimation = true) {
 		const hydratedListGroup = hydrateListGroup(getListGroup(), group);
 		if (dataAnimation !== null && withAnimation) {
 			const element = hydratedListGroup.querySelector("*");
-			element.dataset.del = dataAnimation;
+			element.style = `anim-delay-pos: ${dataAnimation};`;
 			element.dataset.anim = true;
-			dataAnimation = dataAnimation < 9 && dataAnimation !== null ? dataAnimation + 1 : null;
+			dataAnimation++;
 		}
 		elementsContainer.appendChild(hydratedListGroup);
 	});
